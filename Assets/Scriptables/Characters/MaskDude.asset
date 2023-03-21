@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 380bbcb4073cdeb41a99f70bbb24b029, type: 3}
+  m_Name: MaskDude
+  m_EditorClassIdentifier: 
+  itemId: 3595869e-271f-4eed-b773-6378ab3b3887
+  _name: Mask Dude
+  _preview: {fileID: 8416797952724722639, guid: 3750f45c844123341b9a777a96cb1eca,
+    type: 3}
+  _animator: {fileID: 9100000, guid: 49b8aef75946a0a48a3ae468b1c4f5ab, type: 2}
