@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class LevelStartMenu : MonoBehaviour
 {
+    [SerializeField] private SaveGame _save;
     [SerializeField] private GameObject _levelBtnPrefub;
     [SerializeField] private Transform _levelListContent;
     [SerializeField] private int[] _levelSceneId;
@@ -31,7 +32,7 @@ public class LevelStartMenu : MonoBehaviour
             btn.onClick.AddListener(delegate { PlayLevel(levelSceneId, arrId); });
             TextMeshProUGUI[] texts = btn.GetComponentsInChildren<TextMeshProUGUI>();
             texts[0].text = _levelShowName[i];
-            int reachedScore = scoreReached != null?scoreReached.Length < i? scoreReached[i]:0:0;
+            int reachedScore = scoreReached != null? i <scoreReached.Length ? scoreReached[i]:0:0;
             if(startedLevelId == i)
             {
                 if(newReachedScoreInLevel > reachedScore)
@@ -47,6 +48,7 @@ public class LevelStartMenu : MonoBehaviour
     }
     private void PlayLevel(int sceneId, int idInArr)
     {
+        _save.SaveProgress();
         startedLevelId = idInArr;
         SceneManager.LoadScene(sceneId);
     }

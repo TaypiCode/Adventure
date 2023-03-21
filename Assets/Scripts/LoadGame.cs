@@ -26,7 +26,10 @@ public class LoadGame : MonoBehaviour
         {
             LoadData();
         }
-        LoadData();
+        else
+        {
+            LoadData();
+        }
     }
     private void Start()
     {
