@@ -18,11 +18,14 @@ public class LevelUI : MonoBehaviour
     private float _moveForce;
     private int _gotScore;
     private int _maxScore;
+    private AdsScript _ads;
+    private static int _completedLevelsPerSession;
 
     public static bool IsMobile { get => _isMobile; set => _isMobile = value; }
     private void Awake()
     {
         _player = FindObjectOfType<Player>();
+        _ads = FindObjectOfType<AdsScript>();
     }
     private void Start()
     {
@@ -38,7 +41,7 @@ public class LevelUI : MonoBehaviour
     {
         if (_isMobile)
         {
-            _player.Move(_moveForce);
+           _player.Move(_moveForce);
         }
     }
     private void UpdateCurrentScore()
@@ -68,19 +71,26 @@ public class LevelUI : MonoBehaviour
     }
     public void ShowFinishUI(bool isWin)
     {
-        LevelStartMenu.newReachedScoreInLevel = LevelStartMenu.newReachedScoreInLevel < _gotScore? _gotScore:LevelStartMenu.newReachedScoreInLevel;
         _player.IsFinished = true;
         _levelCanvas.SetActive(false);
         _finishCanvas.SetActive(true);
         _playerFinishResult.text = "Собрано очков\n" + _gotScore + "/" + _maxScore;
         if (isWin)
         {
-            _finishResultTitle.text = "Победа";
+            _finishResultTitle.text = "Победа"; LevelStartMenu.newReachedScoreInLevel = LevelStartMenu.newReachedScoreInLevel < _gotScore ? _gotScore : LevelStartMenu.newReachedScoreInLevel;
+            _completedLevelsPerSession++;
+            if (_completedLevelsPerSession % 2 == 0)
+            {
+                RateUsScript.ShowRateUs();
+                _completedLevelsPerSession = 0;
+            }
         }
         else
         {
             _finishResultTitle.text = "Поражение";
         }
+        
+        _ads.ShowNonRewardAd();
     }
     public void ToMainMenu()
     {

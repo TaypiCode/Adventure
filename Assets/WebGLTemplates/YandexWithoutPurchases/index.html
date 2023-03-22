@@ -68,6 +68,12 @@
             else {
                 window.unityInstance.SendMessage('LoadGame', 'LoadData'); //call unity
             }
+		var ua = navigator.userAgent.toLowerCase();
+		var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+		if(isAndroid) 
+		{
+			window.unityInstance.SendMessage('LoadGame', 'ShowMobileInputs'); //call unity
+		}
         }
         function SaveDataFromUnity(data) {
 

@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private float _moveForce;
     [SerializeField] private float _jumpForce;
+    [SerializeField] private AudioSource _jumpAudio;
     private bool _canJump = true;
     private bool _canMove = true;
     private bool _isAlive = true;
@@ -25,7 +26,7 @@ public class Player : MonoBehaviour
         {
             float h = Input.GetAxis("Horizontal");
             Move(h);
-            if (Input.GetAxis("Vertical") > 0)
+            if (Input.GetAxis("Vertical") > 0 || Input.GetKeyDown(KeyCode.Space))
             {
                 Jump();
             }
@@ -59,13 +60,17 @@ public class Player : MonoBehaviour
             _canJump = false;
             _animator.SetTrigger("JumpTrigger");
             _animator.SetBool("IsJumping", true);
+            _jumpAudio.Play();
         }
     }
     public void GetHit()
     {
-        _animator.SetTrigger("HitTrigger");
-        _isAlive = false;
-        FindObjectOfType<LevelUI>().ShowFinishUI(false);
+        if (!_isFinished)
+        {
+            _animator.SetTrigger("HitTrigger");
+            _isAlive = false;
+            FindObjectOfType<LevelUI>().ShowFinishUI(false);
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

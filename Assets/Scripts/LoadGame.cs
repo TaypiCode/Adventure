@@ -26,16 +26,12 @@ public class LoadGame : MonoBehaviour
         {
             LoadData();
         }
-        else
-        {
-            LoadData();
-        }
     }
     private void Start()
     {
         if (_firstLoad)
         {
-            //FirstLoadInSession();
+            FirstLoadInSession();
         }
     }
     public void LoadFromYandex(string data)

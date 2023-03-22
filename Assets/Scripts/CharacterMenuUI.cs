@@ -42,11 +42,19 @@ public class CharacterMenuUI : MonoBehaviour
             {
                 _characterUnlocked[i] = false;
             }
+            if(i == 0)
+            {
+                _characterUnlocked[i] = true;
+            }
             if(selectedCharacterItemId == _characters[i].itemId)
             {
                 _choosedCharacter = _characters[i];
             }
             
+        }
+        if(_choosedCharacter== null) 
+        {
+            _choosedCharacter = _characters[0];
         }
         ShowCharacter(_choosedCharacter);
     }

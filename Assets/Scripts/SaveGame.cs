@@ -43,7 +43,7 @@ public class SaveGame : MonoBehaviour
     }
     private void SaveInYandex()
     {
-        //SaveData(JsonUtility.ToJson(save));
+        SaveData(JsonUtility.ToJson(save));
     }
     public void SaveJson(Save save)
     {

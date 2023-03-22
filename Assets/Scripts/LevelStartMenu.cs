@@ -20,6 +20,7 @@ public class LevelStartMenu : MonoBehaviour
     {
         _reachedScoreInLevel = new int[_levelSceneId.Length];
         _levelListContent.GetComponentsInChildren<Transform>();
+        int totalReachedScore = 0;
         foreach(Transform elem in _levelListContent)
         {
             Destroy(elem.gameObject);
@@ -40,11 +41,13 @@ public class LevelStartMenu : MonoBehaviour
                     reachedScore = newReachedScoreInLevel;
                 }
             }
-            texts[1].text = reachedScore + "/"+_maxScoreInLevel[i];
+            texts[1].text = "Собрано очков: " + reachedScore + "/"+_maxScoreInLevel[i];
             _reachedScoreInLevel[i] = reachedScore;
+            totalReachedScore += reachedScore;
         }
         startedLevelId = -1;
         newReachedScoreInLevel = -1;
+        LeaderboardScript.SetLeaderboardValue(LeaderboardScript.Names.TotalScore, totalReachedScore);
     }
     private void PlayLevel(int sceneId, int idInArr)
     {
