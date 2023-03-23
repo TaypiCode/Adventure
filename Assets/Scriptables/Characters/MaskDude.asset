@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: MaskDude
   m_EditorClassIdentifier: 
   itemId: 3595869e-271f-4eed-b773-6378ab3b3887
-  _name: Mask Dude
+  _nameRus: Mask Dude
+  _nameEng: Mask Dude
   _preview: {fileID: 8416797952724722639, guid: 3750f45c844123341b9a777a96cb1eca,
     type: 3}
   _animator: {fileID: 9100000, guid: 49b8aef75946a0a48a3ae468b1c4f5ab, type: 2}

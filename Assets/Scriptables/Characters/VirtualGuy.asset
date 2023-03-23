@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: VirtualGuy
   m_EditorClassIdentifier: 
   itemId: 85689538-29bc-4751-8896-7afe5fd94610
-  _name: Virtual Guy
+  _nameRus: Virtual Guy
+  _nameEng: Virtual Guy
   _preview: {fileID: -6056987297122131021, guid: 40de9a8703e2e5a47882b0b86451c741,
     type: 3}
   _animator: {fileID: 9100000, guid: 765acb75f9a7b9b4286cadeeaa96f870, type: 2}

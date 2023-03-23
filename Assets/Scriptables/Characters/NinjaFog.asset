@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: NinjaFog
   m_EditorClassIdentifier: 
   itemId: bca11387-298c-40d1-88e0-8b43b841d4d0
-  _name: Ninja Fog
+  _nameRus: Ninja Fog
+  _nameEng: Ninja Fog
   _preview: {fileID: -6367560908665664636, guid: cd947491a13509945aa1b644f9db3ef2,
     type: 3}
   _animator: {fileID: 9100000, guid: ed7afa07ff32dc24e82034ff9e37c6e6, type: 2}

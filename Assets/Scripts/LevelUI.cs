@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class LevelUI : MonoBehaviour
 {
@@ -46,7 +47,17 @@ public class LevelUI : MonoBehaviour
     }
     private void UpdateCurrentScore()
     {
-        _playerCurrentScore.text = "Очки: "+_gotScore +"/" +_maxScore;
+        string score = _gotScore + "/" + _maxScore;
+        switch (Languages.CurrentLanguage)
+        {
+            case Languages.AllLanguages.Rus:
+                _playerCurrentScore.text = "Очки: " + score;
+                break;
+            case Languages.AllLanguages.Eng:
+                _playerCurrentScore.text = "Score: " + score;
+                break;
+        }
+        
     }
     public void PlayerMoveLeft()
     {
@@ -74,10 +85,29 @@ public class LevelUI : MonoBehaviour
         _player.IsFinished = true;
         _levelCanvas.SetActive(false);
         _finishCanvas.SetActive(true);
-        _playerFinishResult.text = "Собрано очков\n" + _gotScore + "/" + _maxScore;
+        string score = _gotScore + "/" + _maxScore;
+        switch (Languages.CurrentLanguage)
+        {
+            case Languages.AllLanguages.Rus:
+                _playerFinishResult.text = "Собрано очков: " + score;
+                break;
+            case Languages.AllLanguages.Eng:
+                _playerFinishResult.text = "Score reached: " + score;
+                break;
+        }
         if (isWin)
         {
-            _finishResultTitle.text = "Победа"; LevelStartMenu.newReachedScoreInLevel = LevelStartMenu.newReachedScoreInLevel < _gotScore ? _gotScore : LevelStartMenu.newReachedScoreInLevel;
+            switch (Languages.CurrentLanguage)
+            {
+                case Languages.AllLanguages.Rus:
+                    _finishResultTitle.text = "Победа";
+                    break;
+                case Languages.AllLanguages.Eng:
+                    _finishResultTitle.text = "Win";
+                    break;
+            }
+            
+            LevelStartMenu.newReachedScoreInLevel = LevelStartMenu.newReachedScoreInLevel < _gotScore ? _gotScore : LevelStartMenu.newReachedScoreInLevel;
             _completedLevelsPerSession++;
             if (_completedLevelsPerSession % 2 == 0)
             {
@@ -87,7 +117,15 @@ public class LevelUI : MonoBehaviour
         }
         else
         {
-            _finishResultTitle.text = "Поражение";
+            switch (Languages.CurrentLanguage)
+            {
+                case Languages.AllLanguages.Rus:
+                    _finishResultTitle.text = "Поражение";
+                    break;
+                case Languages.AllLanguages.Eng:
+                    _finishResultTitle.text = "Loose";
+                    break;
+            }
         }
         
         _ads.ShowNonRewardAd();

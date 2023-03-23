@@ -11,7 +11,8 @@ public class LevelStartMenu : MonoBehaviour
     [SerializeField] private GameObject _levelBtnPrefub;
     [SerializeField] private Transform _levelListContent;
     [SerializeField] private int[] _levelSceneId;
-    [SerializeField] private string[] _levelShowName;
+    [SerializeField] private string[] _levelShowNameRus;
+    [SerializeField] private string[] _levelShowNameEng;
     [SerializeField] private int[] _maxScoreInLevel;
     private int[] _reachedScoreInLevel;
     public static int startedLevelId;
@@ -32,7 +33,7 @@ public class LevelStartMenu : MonoBehaviour
             Button btn = Instantiate(_levelBtnPrefub, _levelListContent).GetComponent<Button>();
             btn.onClick.AddListener(delegate { PlayLevel(levelSceneId, arrId); });
             TextMeshProUGUI[] texts = btn.GetComponentsInChildren<TextMeshProUGUI>();
-            texts[0].text = _levelShowName[i];
+            
             int reachedScore = scoreReached != null? i <scoreReached.Length ? scoreReached[i]:0:0;
             if(startedLevelId == i)
             {
@@ -41,7 +42,19 @@ public class LevelStartMenu : MonoBehaviour
                     reachedScore = newReachedScoreInLevel;
                 }
             }
-            texts[1].text = "Собрано очков: " + reachedScore + "/"+_maxScoreInLevel[i];
+            string scoreReachedText = reachedScore + "/" + _maxScoreInLevel[i];
+            switch (Languages.CurrentLanguage)
+            {
+                case Languages.AllLanguages.Rus:
+                    texts[0].text = _levelShowNameRus[i];
+                    texts[1].text = "Собрано очков: " + scoreReachedText;
+                    break;
+                case Languages.AllLanguages.Eng:
+                    texts[0].text = _levelShowNameEng[i];
+                    texts[1].text = "Score reached: " + scoreReachedText;
+                    break;
+            }
+
             _reachedScoreInLevel[i] = reachedScore;
             totalReachedScore += reachedScore;
         }

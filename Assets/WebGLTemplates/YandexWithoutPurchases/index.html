@@ -36,18 +36,7 @@
                     if (_player.getMode() === 'lite') {
                         // Игрок не авторизован.
 
-                        sdk.auth.openAuthDialog().then(() => {
-                            player = _player;
-                            // Игрок успешно авторизован
-                            SetLoadSavedDataFromYandex();
-                            initPlayer().catch(err => {
-                                // Ошибка при инициализации объекта Player.
-                                SetLoadSavedDataFromPlayerPrefs();
-                            });
-                        }).catch(() => {
-                            // Игрок не авторизован.
-                            SetLoadSavedDataFromPlayerPrefs();
-                        });
+                        SetLoadSavedDataFromPlayerPrefs();
                     }
                     else {
                         player = _player;

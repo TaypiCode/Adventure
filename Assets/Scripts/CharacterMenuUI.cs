@@ -17,6 +17,7 @@ public class CharacterMenuUI : MonoBehaviour
     private int _selectedCharacterId;
     private CharacterScriptable _selectedCharacter;
     private static CharacterScriptable _choosedCharacter;
+    private string[] texts = new string[3];
 
     public static CharacterScriptable ChoosedCharacter { get => _choosedCharacter;  }
 
@@ -56,6 +57,19 @@ public class CharacterMenuUI : MonoBehaviour
         {
             _choosedCharacter = _characters[0];
         }
+        switch (Languages.CurrentLanguage)
+        {
+            case Languages.AllLanguages.Rus:
+                texts[0] = "Выбрано";
+                texts[1] = "Выбрать";
+                texts[2] = "Разблокировать за рекламу";
+                break;
+            case Languages.AllLanguages.Eng:
+                texts[0] = "Selected";
+                texts[1] = "Select";
+                texts[2] = "Unlock for ads";
+                break;
+        }
         ShowCharacter(_choosedCharacter);
     }
     public void CreateStartedCharacterList()
@@ -92,27 +106,30 @@ public class CharacterMenuUI : MonoBehaviour
         }
         _characterName.text = _selectedCharacter.GetName;
         _characterImg.sprite = _selectedCharacter.Preview;
+        
+        
+
         if (_selectedCharacterId < _characterUnlocked.Length)
         {
             if (_characterUnlocked[_selectedCharacterId])
             {
                 if(_choosedCharacter == _selectedCharacter)
                 {
-                    _chooseBtnText.text = "Выбрано";
+                    _chooseBtnText.text = texts[0];
                 }
                 else
                 {
-                    _chooseBtnText.text = "Выбрать";
+                    _chooseBtnText.text = texts[1];
                 }
             }
             else
             {
-                _chooseBtnText.text = "Разблокировать за рекламу";
+                _chooseBtnText.text = texts[2];
             }
         }
         else
         {
-            _chooseBtnText.text = "Разблокировать за рекламу";
+            _chooseBtnText.text = texts[2];
         }
     }
     public void TryChooseCharacter()
@@ -120,7 +137,7 @@ public class CharacterMenuUI : MonoBehaviour
         if (_characterUnlocked[_selectedCharacterId])
         {
             _choosedCharacter = _selectedCharacter;
-            _chooseBtnText.text = "Выбрано";
+            _chooseBtnText.text = texts[0];
         }
         else
         {
@@ -130,6 +147,7 @@ public class CharacterMenuUI : MonoBehaviour
     public void UnlockCharacter()
     {
         _characterUnlocked[_selectedCharacterId] = true;
+        ShowCharacter(_selectedCharacter);
     }
     public bool[] GetUnlockedCharacters()
     {

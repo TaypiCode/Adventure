@@ -36,6 +36,8 @@ public class SaveGame : MonoBehaviour
         save.choosedCharacterId = CharacterMenuUI.ChoosedCharacter.itemId;
 
         save.reachedScoreInLevel = _levelMenu.GetReachedScore();
+
+        save.currentLanguage = Languages.CurrentLanguage.ToString();
     }
     private void SavePlayerPrefs()
     {
@@ -58,4 +60,6 @@ public class Save
     public string choosedCharacterId;
 
     public int[] reachedScoreInLevel;
+
+    public string currentLanguage;
 }
