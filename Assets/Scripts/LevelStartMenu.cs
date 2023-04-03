@@ -17,7 +17,7 @@ public class LevelStartMenu : MonoBehaviour
     private int[] _reachedScoreInLevel;
     public static int startedLevelId;
     public static int newReachedScoreInLevel;
-    public void CreateLevelList(int[] scoreReached = null) 
+    public void CreateLevelList(int[] scoreReached) 
     {
         _reachedScoreInLevel = new int[_levelSceneId.Length];
         _levelListContent.GetComponentsInChildren<Transform>();
@@ -33,9 +33,16 @@ public class LevelStartMenu : MonoBehaviour
             Button btn = Instantiate(_levelBtnPrefub, _levelListContent).GetComponent<Button>();
             btn.onClick.AddListener(delegate { PlayLevel(levelSceneId, arrId); });
             TextMeshProUGUI[] texts = btn.GetComponentsInChildren<TextMeshProUGUI>();
-            
-            int reachedScore = scoreReached != null? i <scoreReached.Length ? scoreReached[i]:0:0;
-            if(startedLevelId == i)
+
+            int reachedScore = 0;
+            if(scoreReached != null)
+            {
+                if(i < scoreReached.Length)
+                {
+                    reachedScore = scoreReached[i];
+                }
+            }
+            if (startedLevelId == i)
             {
                 if(newReachedScoreInLevel > reachedScore)
                 {

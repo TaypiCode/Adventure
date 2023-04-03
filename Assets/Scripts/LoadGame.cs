@@ -63,7 +63,7 @@ public class LoadGame : MonoBehaviour
             //no save
             _languages.ShowChooseLanguage();
             _characterMenu.CreateStartedCharacterList();
-            _startLevelMenu.CreateLevelList();
+            _startLevelMenu.CreateLevelList(null);
         }
         _firstLoad = false;
     }
