@@ -127,8 +127,8 @@ public class LevelUI : MonoBehaviour
                     break;
             }
         }
-        
-        _ads.ShowNonRewardAd();
+        AudioListener.pause = true;
+        StartCoroutine(AdsTimer());
     }
     public void ToMainMenu()
     {
@@ -141,5 +141,10 @@ public class LevelUI : MonoBehaviour
     public void LoadNextLevel()
     {
 
+    }
+    IEnumerator AdsTimer()
+    {
+        yield return new WaitForSecondsRealtime(1);
+        _ads.ShowNonRewardAd();
     }
 }
